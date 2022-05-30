@@ -35,7 +35,7 @@ python app.py
 Successful local deployment should show Server is up on port 5001.
 ## Documentation
 
-For Scripting and configuration documentation, refer `./docs` folder
+For Scripting and configuration documentation, refer `./docs` folder. [Go to Documentation](docs/README.md)
 
 ## API Reference
 

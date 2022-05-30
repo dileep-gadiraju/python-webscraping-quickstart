@@ -18,5 +18,25 @@
             "info": "AppliedScrapy",
             "pdf": "AppliedScrapy"
         }
+    },
+    {
+        "agentId": "GRAINGER-SELENIUM",
+        "description": "Crawler For Grainger",
+        "provider": "Grainger",
+        "URL": "https://www.grainger.com",
+        "scripts": {
+            "info": "GraingerSelenium",
+            "pdf": "GraingerSelenium"
+        }
+    },
+    {
+        "agentId": "GRAINGER-SCRAPY",
+        "description": "Crawler For Grainger",
+        "provider": "Grainger",
+        "URL": "https://www.grainger.com",
+        "scripts": {
+            "info": "GraingerScrapy",
+            "pdf": "GraingerScrapy"
+        }
     }
 ]
