@@ -8,7 +8,7 @@ log = Log(agentRunContext)
 
 * Types of logs:
     
-    1. log.job : it shows the job status, logs are shown in `general-job-stats`
+    1. log.job : it shows the job status, logs are added to `config.ES_JOB_INDEX`.
         
         Syntax:
         ```
@@ -25,7 +25,7 @@ log = Log(agentRunContext)
             log.job(config.JOB_COMPLETED_FAILED_STATUS, 'Job Failed')
         ```
 
-    2. log.info : it shows the job info, logs are shown in `general-app-logs`
+    2. log.info : it shows the job info, logs are added to `config.ES_LOG_INDEX`.
 
         Syntax:
         ```
@@ -37,7 +37,7 @@ log = Log(agentRunContext)
         log.info('warning', 'Script is taking more than usual time')
         log.info('exception', 'No Products Available')
         ```
-    3. log.data : it shows the job data, logs are shown in `general-acrawled-data`
+    3. log.data : it shows the job data, logs are added to `config.ES_DATA_INDEX`.
         
         Syntax:
         ```

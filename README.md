@@ -1,9 +1,9 @@
 
 
 
-# python-crawler-quickstart
+# python-scraping-quickstart
 
-Python based Web crawler Quick Start Project. 
+Python based Web-scraping Quick Start Project. 
 
 For Scraping the project uses Selenium & Scrapy framework.
 
@@ -68,6 +68,17 @@ _The following are mandatory Request Body Parameters_
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `JobId`   | `string` | `(required) uuid of a job`        |
+
+### API Authorization
+
+Currently the projects uses basic aurthorization for authentication.
+
+Set the following environment_variable:
+| Variables             | Type     | Description                        |
+| :--------             | :------- | :--------------------------------  |
+| `BASIC_HTTP_USERNAME` | `string` |  username for server               |
+| `BASIC_HTTP_PASSWORD` | `string` |  password for server               |
+
 
 ## Authors
 

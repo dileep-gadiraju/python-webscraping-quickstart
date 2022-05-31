@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "9a1bcfd6-80ac-49a6-ad43-da29f9f6c9d0",
-		"name": "crawling-api-collections",
+		"name": "scraping-api-collections",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "14608642"
 	},
