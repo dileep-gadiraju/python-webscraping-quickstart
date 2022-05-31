@@ -1,7 +1,7 @@
 
 
 
-# python-scraping-quickstart
+# python-webscraping-quickstart
 
 Python based Web-scraping Quick Start Project. 
 
