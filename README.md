@@ -1,9 +1,11 @@
 
 
 
+
 # python-webscraping-quickstart
 
 Python based Web-scraping Quick Start Project. 
+
 
 For Scraping the project uses Selenium & Scrapy framework.
 
@@ -35,7 +37,9 @@ python app.py
 Successful local deployment should show Server is up on port 5001.
 ## Documentation
 
+
 For Scripting and configuration documentation, refer [Documentation](docs/README.md). 
+
 
 ## API Reference
 
@@ -69,6 +73,7 @@ _The following are mandatory Request Body Parameters_
 | :-------- | :------- | :-------------------------------- |
 | `JobId`   | `string` | `(required) uuid of a job`        |
 
+
 ### API Authorization
 
 Currently the projects uses basic aurthorization for authentication.
@@ -78,6 +83,7 @@ Set the following environment_variable:
 | :--------             | :------- | :--------------------------------  |
 | `BASIC_HTTP_USERNAME` | `string` |  username for server               |
 | `BASIC_HTTP_PASSWORD` | `string` |  password for server               |
+
 
 
 ## Authors
