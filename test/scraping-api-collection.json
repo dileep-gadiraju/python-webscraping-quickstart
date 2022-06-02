@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "9a1bcfd6-80ac-49a6-ad43-da29f9f6c9d0",
+		"name": "scraping-api-collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14608642"
+	},
+	"item": [
+		{
+			"name": "agent-list",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "YYYY",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "XXXX",
+							"type": "string"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:5001/general/agents",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5001",
+					"path": [
+						"general",
+						"agents"
+					]
+				},
+				"description": "Retrieves the list for available agents."
+			},
+			"response": []
+		},
+		{
+			"name": "job-status",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "YYYY",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "XXXX",
+							"type": "string"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:5001/general/status?jobId",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5001",
+					"path": [
+						"general",
+						"status"
+					],
+					"query": [
+						{
+							"key": "jobId",
+							"value": null
+						}
+					]
+				},
+				"description": "Retrieves the status of given jobID."
+			},
+			"response": []
+		},
+		{
+			"name": "agent-run",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "YYYY",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "XXXX",
+							"type": "string"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"agentId\": \"AGENT-ID\",\r\n    \"type\": \"TYPE\",\r\n    \"search\": \"MY_SEARCH_PARAM\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5001/general/run",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5001",
+					"path": [
+						"general",
+						"run"
+					]
+				},
+				"description": "initiated the JOB for given parameters."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "generic@123#",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "test",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

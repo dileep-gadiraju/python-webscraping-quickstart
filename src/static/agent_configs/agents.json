@@ -1,0 +1,42 @@
+[
+    {
+        "agentId": "APPLIED-SELENIUM",
+        "description": "Crawler For Applied",
+        "provider": "Applied",
+        "URL": "https://www.applied.com",
+        "scripts": {
+            "info": "AppliedSelenium",
+            "pdf": "AppliedSelenium"
+        }
+    },
+    {
+        "agentId": "APPLIED-SCRAPY",
+        "description": "Crawler For Applied",
+        "provider": "Applied",
+        "URL": "https://www.applied.com",
+        "scripts": {
+            "info": "AppliedScrapy",
+            "pdf": "AppliedScrapy"
+        }
+    },
+    {
+        "agentId": "GRAINGER-SELENIUM",
+        "description": "Crawler For Grainger",
+        "provider": "Grainger",
+        "URL": "https://www.grainger.com",
+        "scripts": {
+            "info": "GraingerSelenium",
+            "pdf": "GraingerSelenium"
+        }
+    },
+    {
+        "agentId": "GRAINGER-SCRAPY",
+        "description": "Crawler For Grainger",
+        "provider": "Grainger",
+        "URL": "https://www.grainger.com",
+        "scripts": {
+            "info": "GraingerScrapy",
+            "pdf": "GraingerScrapy"
+        }
+    }
+]
