@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-def single_product(log, driver, download_dir, new_output_dir):
+def single_product(log, driver, download_dir, new_output_dir, win_handle=2):
     try:
         doc_section = driver.find_elements(
             By.XPATH, '//ul[@class="documentation__content"]//li')
@@ -20,7 +20,7 @@ def single_product(log, driver, download_dir, new_output_dir):
                 'a').get_attribute('href')
             product_name = str(driver.current_url).split('-')[-1].strip()
             try:
-                product_name = product_name.split('?')[1].strip
+                product_name = product_name.split('-')[-1].split('?')[:1][0]
             except:
                 pass
             driver.switch_to.new_window()
@@ -39,8 +39,8 @@ def single_product(log, driver, download_dir, new_output_dir):
 
             time.sleep(2)
             driver.close()
-            driver.switch_to.window(driver.window_handles[2])
-    except:
+            driver.switch_to.window(driver.window_handles[win_handle])
+    except Exception as e:
         log.info('exception', traceback.format_exc())
 
 
@@ -118,14 +118,12 @@ def GraingerSelenium(agentRunContext):
             '//button[@aria-label="Submit Search Query"]').click()
         time.sleep(5)
 
-        check_url = str(driver.current_url)
         # If multi_products are there in search params
-        if '?search' in check_url:
+        if len(driver.find_elements(By.XPATH, '//div[@class = "multi-tiered-category"]')) > 0:
             multi_product(log, wait, driver, download_dir, new_output_dir)
-        
         # If single_products are there in search params
         else:
-            single_product(log, driver, download_dir, new_output_dir)
+            single_product(log, driver, download_dir, new_output_dir, 0)
 
         log.job(config.JOB_RUNNING_STATUS, 'Downloaded All Invoices')
 
