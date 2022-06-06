@@ -13,3 +13,5 @@
 [Configure scripts.py](scripts.md)
 
 [docker deployment](docker.md)
+
+[Writing Scrapy Scripts](scrapy_scripts.md)

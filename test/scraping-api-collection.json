@@ -32,7 +32,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://0.0.0.0:5001/general/agents",
+					"raw": "http://0.0.0.0:5001/api/agents",
 					"protocol": "http",
 					"host": [
 						"0",
@@ -76,7 +76,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://0.0.0.0:5001/general/status?jobId",
+					"raw": "http://0.0.0.0:5001/api/status?jobId",
 					"protocol": "http",
 					"host": [
 						"0",
@@ -135,7 +135,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://0.0.0.0:5001/general/run",
+					"raw": "http://0.0.0.0:5001/api/run",
 					"protocol": "http",
 					"host": [
 						"0",

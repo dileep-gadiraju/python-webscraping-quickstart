@@ -9,7 +9,7 @@ SERVER_CORS = False
 SERVER_STATIC_PATH = ''
 
 # API configuration
-API_URL_PREFIX = "/general"
+API_URL_PREFIX = "/api"
 BUILD_NUMBER = 'BUILD_NUMBER_001'
 API_MANDATORY_PARAMS = ['agentId', 'search', 'type']
 
@@ -54,6 +54,7 @@ ES_DATA_INDEX = 'general-crawled-data'
 # ------------------Logging variables-----------------------------
 
 JOB_OUTPUT_PATH = "output"
+JOB_OUTPUT_PATH = '/'.join(os.getcwd().split('/')[:-1]) + '/' + JOB_OUTPUT_PATH
 
 # JobStatus variables
 JOB_RUNNING_STATUS = 'RUNNING'

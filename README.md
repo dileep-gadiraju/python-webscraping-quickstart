@@ -46,14 +46,14 @@ For Scripting and configuration documentation, refer [Documentation](docs/README
 #### Get all Agents
 
 ```
- GET /general/agents
+ GET /api/agents
 ```
 _No paramenters Required_
 
 #### Start a Scraping Job
 
 ```
-  POST /general/run
+  POST /api/run
 ```
 _The following are mandatory Request Body Parameters_
 | Parameter | Type     | Description                       |
@@ -66,7 +66,7 @@ _The following are mandatory Request Body Parameters_
 #### Get Job Status
 
 ```
- GET /general/status
+ GET /api/status
 ```
 
 | Parameter | Type     | Description                       |
