@@ -104,6 +104,6 @@ def GraingerScrapy(agentRunContext):
     runner = CrawlerRunner(settings=get_scrapy_settings(agentRunContext.jobId))
     runner.crawl(
         GraingerScrapy, search_param=agentRunContext.requestBody.get('search'), eslog=log)
-    reactor.run()
+    runner.join()
     log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
             'Successfully scraped all data')
