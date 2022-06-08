@@ -30,6 +30,7 @@ def get_driver(temp_directory):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--verbose')
     chrome_options.add_argument('--log-level=3')
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.page_load_strategy = 'normal'

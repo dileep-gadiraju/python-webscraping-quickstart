@@ -28,7 +28,7 @@ def AppliedSelenium(agentRunContext):
         log.job(config.JOB_RUNNING_STATUS, 'Job Started')
 
         try:
-            wait(EC.element_to_be_clickable(
+            wait.until(EC.element_to_be_clickable(
                 (By.ID, "CybotCookiebotDialogBodyButtonAccept")))
             driver.find_element_by_id(
                 "CybotCookiebotDialogBodyButtonAccept").click()
@@ -37,8 +37,6 @@ def AppliedSelenium(agentRunContext):
         for page_no in range(1, 1000):
             driver.get(url.replace('<page>', str(page_no)))
             time.sleep(2)
-            if 'page' not in driver.current_url:
-                break
 
             wait.until(EC.presence_of_element_located(
                 (By.CLASS_NAME, 'product-list')))
@@ -61,28 +59,37 @@ def AppliedSelenium(agentRunContext):
                     'item': driver.find_element_by_xpath('//div[@class="customer-part-number"]').text.strip()
                 }
 
-                item_dict['short_description'] = list()
-                des = driver.find_element_by_class_name('short-description')
-                for ele in des.find_elements_by_xpath('.//li'):
-                    item_dict['short_description'].append(ele.text.strip())
+                try:
+                    item_dict['short_description'] = list()
+                    des = driver.find_element_by_class_name('short-description')
+                    for ele in des.find_elements_by_xpath('.//li'):
+                        item_dict['short_description'].append(ele.text.strip())
+                except:
+                    log.info('info', 'No Short-Description Available for {0}'.format(item_dict['brand']))
 
-                item_dict['specification'] = dict()
-                spe = driver.find_element_by_id('specifications')
-                for table in spe.find_elements_by_xpath('.//table'):
-                    for tr_ele in table.find_elements_by_xpath('./tbody/tr'):
-                        key = str(tr_ele.find_element_by_xpath(
-                            './td[1]').text).strip()
-                        value = str(tr_ele.find_element_by_xpath(
-                            './td[2]').text).strip()
-                        item_dict['specification'][key] = value
+                try:
+                    item_dict['specification'] = dict()
+                    spe = driver.find_element_by_id('specifications')
+                    for table in spe.find_elements_by_xpath('.//table'):
+                        for tr_ele in table.find_elements_by_xpath('./tbody/tr'):
+                            key = str(tr_ele.find_element_by_xpath(
+                                './td[1]').text).strip()
+                            value = str(tr_ele.find_element_by_xpath(
+                                './td[2]').text).strip()
+                            item_dict['specification'][key] = value
+                except:
+                    log.info('info', 'No Specification Available for {0}'.format(item_dict['brand']))
 
-                print(item_dict['specification'])
                 try:
                     log.data(item_dict)
                 except:
                     pass
                 driver.close()
                 driver.switch_to.window(driver.window_handles[0])
+            
+            if 'page' not in driver.current_url:
+                break
+        
         log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
                 'Successfully scraped all data')
     except Exception as e:

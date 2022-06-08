@@ -6,17 +6,7 @@
         "URL": "https://www.applied.com",
         "scripts": {
             "info": "AppliedSelenium",
-            "pdf": "AppliedSelenium"
-        }
-    },
-    {
-        "agentId": "APPLIED-SCRAPY",
-        "description": "Crawler For Applied",
-        "provider": "Applied",
-        "URL": "https://www.applied.com",
-        "scripts": {
-            "info": "AppliedScrapy",
-            "pdf": "AppliedScrapy"
+            "pdf": "NoScripts"
         }
     },
     {
@@ -25,7 +15,7 @@
         "provider": "Grainger",
         "URL": "https://www.grainger.com",
         "scripts": {
-            "info": "GraingerSelenium",
+            "info": "NoScripts",
             "pdf": "GraingerSelenium"
         }
     },
@@ -37,6 +27,16 @@
         "scripts": {
             "info": "GraingerScrapy",
             "pdf": "GraingerScrapy"
+        }
+    },
+    {
+        "agentId": "RS-SCRAPY",
+        "description": "Crawler For RS Components",
+        "provider": "RS Components",
+        "URL": "https://in.rsdelivers.com",
+        "scripts": {
+            "info": "RSScrapy",
+            "pdf": "NoScripts"
         }
     }
 ]
