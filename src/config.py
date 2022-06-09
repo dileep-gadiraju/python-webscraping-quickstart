@@ -45,6 +45,9 @@ MAX_WAITING_JOBS = int(os.environ.get('MAX_WAITING_JOBS', 10))
 # ------------------ElasticSearch DB variables--------------------
 
 ELASTIC_DB_URL = os.environ.get('ELASTIC_DB_URL')
+ELASTIC_DB_CERT = os.environ.get('ELASTIC_DB_CERT')
+ELASTIC_DB_USERNAME = os.environ.get('ELASTIC_DB_USERNAME')
+ELASTIC_DB_PASSWORD = os.environ.get('ELASTIC_DB_PASSWORD')
 
 # ES index variables
 ES_LOG_INDEX = 'general-app-logs'

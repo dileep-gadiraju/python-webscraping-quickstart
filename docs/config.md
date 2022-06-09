@@ -40,12 +40,15 @@
 
 ## ElasticSearch DB variables
 
-| Variables        | Type     | Description                          |
-| :--------        | :------- | :-------------------------           |
-| `ELASTIC_DB_URL` | `string` |  URL of ElasticSearch Server         |
-| `ES_LOG_INDEX`   | `string` |  Info Logging Index in ElasticSearch |
-| `ES_JOB_INDEX`   | `string` |  Job  Logging Index in ElasticSearch |
-| `ES_DATA_INDEX`  | `string` |  Data Logging Index in ElasticSearch |
+| Variables               | Type     | Description                                  |
+| :--------               | :------- | :-------------------------                   |
+| `ELASTIC_DB_URL`        | `string` |  URL of ElasticSearch Server                 |
+| `ELASTIC_DB_CERT`       | `string` |  Path For ElasticSearch Certificate File     |
+| `ELASTIC_DB_USERNAME`   | `string` |  ElasticSearch username                      |
+| `ELASTIC_DB_PASSWORD`   | `string` |  ElasticSearch password                      |
+| `ES_LOG_INDEX`          | `string` |  Info Logging Index in ElasticSearch         |
+| `ES_JOB_INDEX`          | `string` |  Job  Logging Index in ElasticSearch         |
+| `ES_DATA_INDEX`         | `string` |  Data Logging Index in ElasticSearch         |
 
 ## Logging configuration
 
