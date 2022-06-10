@@ -12,7 +12,7 @@ class Log(object):
 
     def __init__(self, agentRunContext):
         self.agentRunContext = agentRunContext
-        self.es_client = Elasticsearch([config.ELASTIC_DB_URL])
+        self.es_client = Elasticsearch([config.ELASTIC_DB_URL],ca_certs=config.ELASTIC_DB_CERT,verify_certs=False, basic_auth=[config.ELASTIC_DB_USERNAME, config.ELASTIC_DB_PASSWORD])
 
     def __populate_context(self):
         data = {

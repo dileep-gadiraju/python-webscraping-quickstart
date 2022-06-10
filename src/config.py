@@ -66,6 +66,6 @@ JOB_COMPLETED_FAILED_STATUS = 'COMPLETED_FAILED'
 
 # ------------------Driver Variables-------------------------------
 
-CHROMEDRIVER_PATH = 'C:\\Drivers\\chromedriver_win32\\chromedriver.exe'
+CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
 
 # -----------------------------------------------------------------
