@@ -65,7 +65,7 @@ def AppliedSelenium(agentRunContext):
                     for ele in des.find_elements_by_xpath('.//li'):
                         item_dict['short_description'].append(ele.text.strip())
                 except:
-                    log.info('info', 'No Short-Description Available for {0}'.format(item_dict['brand']))
+                    log.info('info', 'No Short-Description Available for {0}'.format(item_dict['item_no']))
 
                 try:
                     item_dict['specification'] = dict()
@@ -78,7 +78,7 @@ def AppliedSelenium(agentRunContext):
                                 './td[2]').text).strip()
                             item_dict['specification'][key] = value
                 except:
-                    log.info('info', 'No Specification Available for {0}'.format(item_dict['brand']))
+                    log.info('info', 'No Specification Available for {0}'.format(item_dict['item_no']))
 
                 try:
                     log.data(item_dict)

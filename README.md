@@ -84,7 +84,36 @@ Set the following environment_variable:
 | `BASIC_HTTP_USERNAME` | `string` |  username for server               |
 | `BASIC_HTTP_PASSWORD` | `string` |  password for server               |
 
+### File Structure
 
+```
+.
+├── deploy (contains docker stack file to deploy)
+├── docs (contains detailed documentation)
+├── README.md
+├── src
+│   ├── common (contains eslog, azure_blob, scraping_utils)
+│   ├── models 
+│   ├── repositories
+│   ├── resources 
+│   ├── routes 
+│   ├── scripts (contains script for the agents)
+│   │   ├── info
+│   │   ├── __init__.py 
+│   │   └── pdf
+│   ├── static 
+│   │   └── agent_configs
+│   │       └── agents.json (contains all the agents-details in this project)
+│   ├── utilities
+│   ├── app.py (main server file)
+│   ├── config.py (main configuration file)
+│   ├── Dockerfile 
+│   ├── requirements.txt
+│   ├── start.sh
+├── test (contains API collections)
+└── training (training content for selenium/scrapy)
+
+```
 
 ## Authors
 
