@@ -15,94 +15,89 @@ class BadRequestError(RestAPIError):
         super().__init__(400, payload)
 
 
-class InternalServerErrorError(RestAPIError):
+class InternalServerError(RestAPIError):
     def __init__(self, payload=None):
         super().__init__(500, payload)
 
 
+class AgentError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    @property
+    def message(self):
+        return self._message
+
+    @message.setter
+    def message(self, value):
+        self._message = value
+
+    def __str__(self):
+        return self.message
+
+
+class LoginFailure(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    @property
+    def message(self):
+        return self._message
+
+    @message.setter
+    def message(self, value):
+        self._message = value
+
+    def __str__(self):
+        return self.message
+
+
+class ConnectionError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    @property
+    def message(self):
+        return self._message
+
+    @message.setter
+    def message(self, value):
+        self._message = value
+
+    def __str__(self):
+        return self.message
+
+
+class ParamMissing(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    @property
+    def message(self):
+        return self._message
+
+    @message.setter
+    def message(self, value):
+        self._message = value
+
+    def __str__(self):
+        return self.message
+
+
 class FormatError(Exception):
-    def __init__(self, code, message):
-        self._code = code
-        self._message = message
-
-    @property
-    def code(self):
-        return self._code
+    def __init__(self, message):
+        self.message = message
 
     @property
     def message(self):
         return self._message
+
+    @message.setter
+    def message(self, value):
+        self._message = value
 
     def __str__(self):
-        return self.__class__.__name__ + ': ' + self.message
-
-
-class WorkflowkeyError(Exception):
-    def __init__(self, code, message):
-        self._code = code
-        self._message = message
-
-    @property
-    def code(self):
-        return self._code
-
-    @property
-    def message(self):
-        return self._message
-
-    def __str__(self):
-        return self.__class__.__name__ + ': ' + self.message
-
-
-class FileErrors(Exception):
-    def __init__(self, code, message):
-        self._code = code
-        self._message = message
-
-    @property
-    def code(self):
-        return self._code
-
-    @property
-    def message(self):
-        return self._message
-
-    def __repr__(self):
-        return {"code": self.code, "message": self.__class__.__name__ + ': ' + self.message}
-
-
-class FileEncodingError(Exception):
-    def __init__(self, code, message):
-        self._code = code
-        self._message = message
-
-    @property
-    def code(self):
-        return self._code
-
-    @property
-    def message(self):
-        return self._message
-
-    def __str__(self):
-        return self.__class__.__name__ + ': ' + self.message
-
-
-class ServiceError(Exception):
-    def __init__(self, code, message):
-        self._code = code
-        self._message = message
-
-    @property
-    def code(self):
-        return self._code
-
-    @property
-    def message(self):
-        return self._message
-
-    def __str__(self):
-        return self.__class__.__name__ + ': ' + self.message
+        return self.message
 
 
 class ValueMissing(Exception):
@@ -120,5 +115,18 @@ class ValueMissing(Exception):
     def __str__(self):
         return self.message
 
-    def __repr__(self):
-        return self.message
+
+class ProxyFailure(Exception):
+    def __init__(self, region):
+        self.region = region
+
+    @property
+    def region(self):
+        return self._region
+
+    @region.setter
+    def region(self, value):
+        self._region = value
+
+    def __str__(self):
+        return 'Proxy failure | region : {0}'.format(self.region)

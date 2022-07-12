@@ -8,8 +8,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-def NoScripts(agentRunContext):
-    log = Log(agentRunContext)
+def NoScripts(agentContext):
+    log = Log(agentContext)
 
     log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
             'Script Not Available')

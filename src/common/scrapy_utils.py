@@ -22,6 +22,8 @@ class CustomScrapyFilesItem(scrapy.Item):
     files = scrapy.Field
 
 # custom file pipeline
+
+
 class CustomFilesPipeline(FilesPipeline):
     def get_media_requests(self, item, info):
         for my_url in item.get('file_urls', []):

@@ -27,9 +27,9 @@ with open(os.path.join(config.SERVER_STATIC_PATH, config.AGENT_CONFIG_PATH), 'r'
     agent_list = json.load(f)
 
 __import__("scripts")
-
 my_scripts = sys.modules["scripts"]
 
+# serialize agent config
 agentUtils = AgentUtils()
 agentUtils.filepath = os.path.join(
     config.SERVER_STATIC_PATH, config.AGENT_CONFIG_PKL_PATH)
@@ -41,11 +41,8 @@ for i in range(len(agent_list)-1, len(agent_list)-len_diff-1, -1):
     for type in config.AGENT_SCRIPT_TYPES.values():
         agent_script[type] = my_scripts.__dict__[
             type].__dict__[agent['scripts'][type]]
-    agentUtils.addAgent(agent['agentId'],
-                        agent['description'],
-                        agent['provider'],
-                        agent_script,
-                        agent['URL'])
+    agent['scripts'] = agent_script
+    agentUtils.addAgent(agent)
 
 
 # server CORS policy

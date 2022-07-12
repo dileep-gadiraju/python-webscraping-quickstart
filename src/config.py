@@ -11,7 +11,7 @@ SERVER_STATIC_PATH = ''
 # API configuration
 API_URL_PREFIX = "/api"
 BUILD_NUMBER = 'BUILD_NUMBER_001'
-API_MANDATORY_PARAMS = ['agentId', 'search', 'type']
+API_MANDATORY_PARAMS = ['agentId', 'type', 'search']
 
 # Application configuration
 BASIC_HTTP_USERNAME = os.environ.get('BASIC_HTTP_USERNAME')
@@ -67,5 +67,9 @@ JOB_COMPLETED_FAILED_STATUS = 'COMPLETED_FAILED'
 # ------------------Driver Variables-------------------------------
 
 CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
+
+# ------------------Proxy Config File------------------------------
+
+PROXY_FILE = 'proxy_config.yml'
 
 # -----------------------------------------------------------------

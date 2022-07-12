@@ -29,8 +29,8 @@ class AgentUtils:
         file_pi = open(self.filepath, 'wb')
         pickle.dump(agent_list, file_pi)
 
-    def addAgent(self, agentId, description, provider, scripts, URL):
-        agent = Agent(agentId, description, provider, scripts, URL)
+    def addAgent(self, agentData):
+        agent = Agent(agentData)
         agent_list = self.__readPklFile()
         for old_agent in agent_list:
             if old_agent.agentId == agent.agentId:
@@ -49,5 +49,6 @@ class AgentUtils:
             agent['provider'] = old_agent.provider
             agent['scripts'] = old_agent.scripts
             agent['URL'] = old_agent.URL
+            agent['proxy'] = old_agent.proxy
             return_list.append(agent)
         return return_list

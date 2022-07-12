@@ -57,3 +57,17 @@ class Status(enum.Enum):
         'http': {'status': 400},
         'why': 'please refer api contract to check your request structure'
     }
+
+
+def get_status(exceptionType):
+    e_dict = {
+        'AgentError': Status.ERR_INVALID_DATA,
+        'ParamMissing': Status.ERR_MISSING_PARAMETERS,
+        'FormatError': Status.ERR_INVALID_DATA,
+        'ValueMissing': Status.ERR_INVALID_DATA,
+    }
+    if str(exceptionType) in e_dict.keys():
+        status = e_dict[str(exceptionType)]
+    else:
+        status = Status.FAILURE
+    return status

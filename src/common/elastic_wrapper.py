@@ -10,15 +10,17 @@ class Log(object):
     def from_default(cls):
         return cls(None)
 
-    def __init__(self, agentRunContext):
-        self.agentRunContext = agentRunContext
-        self.es_client = Elasticsearch([config.ELASTIC_DB_URL],ca_certs=config.ELASTIC_DB_CERT,verify_certs=False, basic_auth=[config.ELASTIC_DB_USERNAME, config.ELASTIC_DB_PASSWORD])
+    def __init__(self, agentContext):
+        self.agentContext = agentContext
+        self.es_client = Elasticsearch([config.ELASTIC_DB_URL], ca_certs=config.ELASTIC_DB_CERT, http_auth=[
+                                       config.ELASTIC_DB_USERNAME, config.ELASTIC_DB_PASSWORD])
 
     def __populate_context(self):
         data = {
-            'agentId': self.agentRunContext.requestBody['agentId'],
-            'jobId': self.agentRunContext.jobId,
-            'jobType': self.agentRunContext.jobType,
+            'agentId': self.agentContext.requestBody['agentId'],
+            'jobId': self.agentContext.jobId,
+            'jobType': self.agentContext.jobType,
+            'search': self.agentContext.requestBody['search'],
             'timestamp': int(time.time()*1000),
             'buildNumber': config.BUILD_NUMBER
         }

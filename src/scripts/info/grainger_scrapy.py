@@ -97,13 +97,13 @@ class GraingerScrapy(scrapy.Spider):
 
 # ---------------------SCRAPING-FUNCTION---------------------
 
-def GraingerScrapy(agentRunContext):
-    log = Log(agentRunContext)
+def GraingerScrapy(agentContext):
+    log = Log(agentContext)
     log.job(config.JOB_RUNNING_STATUS, 'Job Started')
 
-    runner = CrawlerRunner(settings=get_scrapy_settings(agentRunContext.jobId))
+    runner = CrawlerRunner(settings=get_scrapy_settings(agentContext.jobId))
     runner.crawl(
-        GraingerScrapy, search_param=agentRunContext.requestBody.get('search'), eslog=log)
+        GraingerScrapy, search_param=agentContext.requestBody.get('search'), eslog=log)
     runner.join()
     log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
             'Successfully scraped all data')

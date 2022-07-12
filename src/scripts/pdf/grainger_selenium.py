@@ -84,10 +84,10 @@ def multi_product(log, wait, driver, download_dir, new_output_dir):
         time.sleep(5)
 
 
-def GraingerSelenium(agentRunContext):
-    log = Log(agentRunContext)
+def GraingerSelenium(agentContext):
+    log = agentContext.log
     try:
-        download_dir_id = str(agentRunContext.jobId)
+        download_dir_id = str(agentContext.jobId)
         download_dir = os.path.join(
             os.getcwd(), 'temp', 'temp-' + download_dir_id)
 
@@ -102,9 +102,9 @@ def GraingerSelenium(agentRunContext):
         os.mkdir(output_dir + download_dir_id)
         new_output_dir = os.path.join(output_dir, download_dir_id)
 
-        driver = get_driver(download_dir)
+        driver = get_driver(download_dir, agentContext)
         driver.maximize_window()
-        driver.get(agentRunContext.URL)
+        driver.get(agentContext.URL)
 
         wait = WebDriverWait(driver, 20)
 
@@ -112,7 +112,7 @@ def GraingerSelenium(agentRunContext):
 
         # Inputing Search-Param
         driver.find_element_by_xpath(
-            '//input[@aria-label="Search Query"]').send_keys(agentRunContext.requestBody['search'])
+            '//input[@aria-label="Search Query"]').send_keys(agentContext.requestBody['search'])
         time.sleep(2)
         driver.find_element_by_xpath(
             '//button[@aria-label="Submit Search Query"]').click()

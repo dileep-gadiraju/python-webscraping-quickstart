@@ -9,18 +9,18 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-def AppliedSelenium(agentRunContext):
-    log = Log(agentRunContext)
+def AppliedSelenium(agentContext):
+    log = agentContext.log
     try:
 
         url = 'https://www.applied.com/search?q=:relevance:FTS:' + \
-            agentRunContext.requestBody['search'] + \
+            agentContext.requestBody['search'] + \
             '&page=<page>&search-category=all&override=true&isLevelUp=false'
-        download_dir_id = str(agentRunContext.jobId)
+        download_dir_id = str(agentContext.jobId)
         download_dir = os.path.join(
             os.getcwd(), 'temp', 'temp-' + download_dir_id)
 
-        driver = get_driver(download_dir)
+        driver = get_driver(download_dir, agentContext)
         driver.maximize_window()
 
         driver.get(url)

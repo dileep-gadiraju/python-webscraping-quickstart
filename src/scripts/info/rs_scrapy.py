@@ -36,13 +36,13 @@ class RSSpider(scrapy.Spider):
 
 # ---------------------SCRAPING-FUNCTION---------------------
 
-def RSScrapy(agentRunContext):
-    log = Log(agentRunContext)
+def RSScrapy(agentContext):
+    log = agentContext.log
     log.job(config.JOB_RUNNING_STATUS, 'Job Started')
 
-    runner = CrawlerRunner(settings=get_scrapy_settings(agentRunContext.jobId))
+    runner = CrawlerRunner(settings=get_scrapy_settings(agentContext.jobId))
     runner.crawl(
-        RSSpider, search_param=agentRunContext.requestBody.get('search'), eslog=log)
+        RSSpider, search_param=agentContext.requestBody.get('search'), eslog=log)
 
     runner.join()
     log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
