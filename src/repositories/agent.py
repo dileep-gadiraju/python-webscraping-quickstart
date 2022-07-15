@@ -5,6 +5,7 @@ from copy import deepcopy
 import config
 from models import AgentUtils
 from utilities import AgentContext
+from common import TooManyRequest
 
 AGENTS_PKL_PATH = os.path.join(
     config.SERVER_STATIC_PATH, config.AGENT_CONFIG_PKL_PATH)
@@ -45,6 +46,5 @@ class AgentRepo:
             else:
                 pass
         else:
-            output = {
-                'message': 'Already many jobs are in Waiting ... Please retry after some time.'}
+            raise TooManyRequest('Already many jobs are in Waiting ... Please retry after some time.')
         return output

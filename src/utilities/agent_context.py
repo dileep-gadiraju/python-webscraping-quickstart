@@ -60,3 +60,12 @@ class AgentContext(object):
                 'generic-', '').replace('-', ' ')
             blob_var.set_agent_folder(folder)
             self._blobStorage = blob_var
+
+    @property
+    def log(self):
+        return self._log
+
+    @log.setter
+    def log(self, value):
+        value.job(config.JOB_RUNNING_STATUS, "JOB in waiting state.")
+        self._log = value

@@ -57,6 +57,11 @@ class Status(enum.Enum):
         'http': {'status': 400},
         'why': 'please refer api contract to check your request structure'
     }
+    ERR_TOO_MANY_REQUEST = {
+        'ok': False,
+        'http': {'status': 429},
+        'why': 'too many requests'
+    }
 
 
 def get_status(exceptionType):
@@ -65,6 +70,7 @@ def get_status(exceptionType):
         'ParamMissing': Status.ERR_MISSING_PARAMETERS,
         'FormatError': Status.ERR_INVALID_DATA,
         'ValueMissing': Status.ERR_INVALID_DATA,
+        'TooManyRequest': Status.ERR_TOO_MANY_REQUEST
     }
     if str(exceptionType) in e_dict.keys():
         status = e_dict[str(exceptionType)]

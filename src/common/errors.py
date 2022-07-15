@@ -35,6 +35,21 @@ class AgentError(Exception):
     def __str__(self):
         return self.message
 
+class TooManyRequest(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    @property
+    def message(self):
+        return self._message
+
+    @message.setter
+    def message(self, value):
+        self._message = value
+
+    def __str__(self):
+        return self.message
+
 
 class LoginFailure(Exception):
     def __init__(self, message):
