@@ -33,7 +33,7 @@ class BlobStorage(object):
     def upload_file(self, file_name, file_contents):
         upload_file_path = os.path.join(self.root_folder, file_name)
         blob_client = self.blob_service_client.get_blob_client(
-            container=config.CONTAINER_NAME, blob=upload_file_path)
+            container=config.BLOB_CONTAINER_NAME, blob=upload_file_path)
         try:
             blob_client.upload_blob(file_contents, overwrite=self.overwrite)
         except Exception as e:

@@ -1,9 +1,8 @@
 import config
 import crochet
 import scrapy
-from common import Log,get_scrapy_settings,CustomScrapyFilesItem
+from common import get_scrapy_settings,CustomScrapyFilesItem
 from scrapy.crawler import CrawlerRunner
-from twisted.internet import reactor
 
 crochet.setup()
 
@@ -19,8 +18,8 @@ false = 'false'
 
 # ---------------------SCRAPING-CLASS---------------------
 
-class GriengerPDFScrapy(scrapy.Spider):
-    name = 'GriengerPDFScrapy'
+class grainger_pdf_scrapy(scrapy.Spider):
+    name = 'grainger_pdf_scrapy'
 
     def __init__(self, search_param, eslog):
         self.eslog = eslog
@@ -95,13 +94,13 @@ class GriengerPDFScrapy(scrapy.Spider):
 # ---------------------SCRAPING-FUNCTION---------------------
 
 
-def GraingerScrapy(agentContext):
-    log = agentContext.log
+def grainger_scrapy(agentcontext):
+    log = agentcontext.log
     log.job(config.JOB_RUNNING_STATUS, 'Job Started')
 
-    runner = CrawlerRunner(settings=get_scrapy_settings(agentContext.jobId))
+    runner = CrawlerRunner(settings=get_scrapy_settings(agentcontext.job_id))
     runner.crawl(
-        GriengerPDFScrapy, search_param=agentContext.requestBody.get('search'), eslog=log)
+        grainger_pdf_scrapy, search_param=agentcontext.request_body.get('search'), eslog=log)
     runner.join()
     log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
             'Successfully scraped all data')

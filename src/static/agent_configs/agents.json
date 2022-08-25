@@ -5,8 +5,8 @@
         "provider": "Applied",
         "URL": "https://www.applied.com",
         "scripts": {
-            "info": "AppliedSelenium",
-            "pdf": "NoScripts"
+            "info": "applied_selenium",
+            "pdf": "no_scripts"
         }
     },
     {
@@ -15,8 +15,8 @@
         "provider": "Grainger",
         "URL": "https://www.grainger.com",
         "scripts": {
-            "info": "NoScripts",
-            "pdf": "GraingerSelenium"
+            "info": "no_scripts",
+            "pdf": "grainger_selenium"
         }
     },
     {
@@ -25,8 +25,8 @@
         "provider": "Grainger",
         "URL": "https://www.grainger.com",
         "scripts": {
-            "info": "GraingerScrapy",
-            "pdf": "GraingerScrapy"
+            "info": "grainger_scrapy",
+            "pdf": "grainger_scrapy"
         }
     },
     {
@@ -35,8 +35,8 @@
         "provider": "RS Components",
         "URL": "https://in.rsdelivers.com",
         "scripts": {
-            "info": "RSScrapy",
-            "pdf": "NoScripts"
+            "info": "rs_scrapy",
+            "pdf": "no_scripts"
         }
     }
 ]

@@ -10,17 +10,17 @@ class Log(object):
     def from_default(cls):
         return cls(None)
 
-    def __init__(self, agentContext):
-        self.agentContext = agentContext
+    def __init__(self, agentcontext):
+        self.agentcontext = agentcontext
         self.es_client = Elasticsearch([config.ELASTIC_DB_URL], ca_certs=config.ELASTIC_DB_CERT, http_auth=[
                                        config.ELASTIC_DB_USERNAME, config.ELASTIC_DB_PASSWORD])
 
     def __populate_context(self):
         data = {
-            'agentId': self.agentContext.requestBody['agentId'],
-            'jobId': self.agentContext.jobId,
-            'jobType': self.agentContext.jobType,
-            'search': self.agentContext.requestBody['search'],
+            'agentId': self.agentcontext.request_body['agentId'],
+            'jobId': self.agentcontext.job_id,
+            'jobType': self.agentcontext.job_type,
+            'search': self.agentcontext.request_body['search'],
             'timestamp': int(time.time()*1000),
             'buildNumber': config.BUILD_NUMBER
         }
@@ -49,8 +49,8 @@ class Log(object):
         job_data['message'] = message
         self.__index_data_to_es(config.ES_JOB_INDEX, job_data)
 
-    def get_status(self, jobId):
-        print(jobId)
+    def get_status(self, job_id):
+        print(job_id)
         if not self.es_client.ping():
             return {'status': 'ES_CONNECTION_FAILED', 'message': "Not able to connect to ES DB"}
         else:
@@ -66,7 +66,7 @@ class Log(object):
                     "bool": {
                         "must": [
                             {"match": {
-                                "jobId.keyword": jobId
+                                "jobId.keyword": job_id
                             }}
                         ]
                     }

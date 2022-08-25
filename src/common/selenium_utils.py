@@ -4,7 +4,7 @@ from threading import Lock
 
 import config
 import yaml
-from seleniumwire import webdriver
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -21,16 +21,9 @@ def get_proxy_addr(country):
         proxy_url = None
     else:
         proxy_url = data.get('URL', None)
-        proxy_username = data.get('username', None)
-        proxy_password = data.get('password', None)
         del data, proxy_list
-        if proxy_url is None:
-            proxy_url = ''
-        elif proxy_username is None or proxy_password is None:
-            proxy_url = 'https://'+proxy_url
-        else:
-            proxy_url = 'https://{0}:{1}@{2}'.format(
-                proxy_username, proxy_password, proxy_url)
+        if proxy_url is not None:
+            proxy_url = 'http://{0}'.format(proxy_url)
     return proxy_url
 
 
@@ -42,7 +35,7 @@ def enable_download_headless(browser, download_dir):
     browser.execute("send_command", params)
 
 
-def get_driver(temp_directory, agentContext):
+def get_driver(temp_directory, agentcontext):
     # start lock
     chrome_lock.acquire(timeout=60)
 
@@ -54,30 +47,33 @@ def get_driver(temp_directory, agentContext):
     d = DesiredCapabilities.CHROME
     d['goog:loggingPrefs'] = {'browser': 'ALL'}
 
-    # seleniumwire_option -> proxy server
-    if hasattr(agentContext, 'proxy'):
-        proxy_addr = get_proxy_addr(agentContext.proxy)
-        print('proxy_addr->', proxy_addr)
-        if proxy_addr is not None:
-            wire_option = {
-                'proxy': {
-                    'http': proxy_addr,
-                    'https': proxy_addr,
-                    'no_proxy': 'localhost,127.0.0.1'
-                }
-            }
-
+    # Chrome Options
     chrome_options = Options()
+    # enable proxy
+    if hasattr(agentcontext, 'proxy'):
+        proxy_addr = get_proxy_addr(agentcontext.proxy)
+        if proxy_addr is not None:
+            chrome_options.add_argument(
+                "--proxy-server={0}".format(proxy_addr))
+    # to run without a UI or display server dependencies.
     chrome_options.add_argument("--headless")
+    # to set windows size to the specified values
     chrome_options.add_argument("--window-size=1920x1080")
+    # to disable the unwanted browser notifications
     chrome_options.add_argument("--disable-notifications")
+    # to disables sandbox mode for all processes means browser-level switch for testing purposes only.
     chrome_options.add_argument('--no-sandbox')
+    # to disable verbose logging for the ChromeDriver executable
     chrome_options.add_argument('--verbose')
+    # to set the minimum log level.
     chrome_options.add_argument('--log-level=3')
     chrome_options.add_argument(
         "--disable-blink-features=AutomationControlled")
+    # to disables GPU hardware acceleration.
     chrome_options.add_argument('--disable-gpu')
+    # The /dev/shm partition is too small in certain VM environments, causing Chrome to fail or crash.
     chrome_options.add_argument('--disable-dev-shm-usage')
+    # A string used to override the default user agent with a custom one.
     chrome_options.page_load_strategy = 'normal'
     chrome_options.add_argument(
         '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36')
@@ -90,6 +86,8 @@ def get_driver(temp_directory, agentContext):
         "safebrowsing.enabled": False,
         "plugins.always_open_pdf_externally": True
     })
+
+    # driver initialization with capibilities and options
     driver = webdriver.Chrome(
         service=chrome_path, options=chrome_options, desired_capabilities=d)
     enable_download_headless(driver, download_dir)

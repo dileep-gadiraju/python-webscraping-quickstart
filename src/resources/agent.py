@@ -1,7 +1,5 @@
-import os
 import traceback
 
-import config
 from app import basic_auth
 from flask import request
 from flask_restful import Resource
@@ -9,14 +7,14 @@ from models import CustomResponse, get_status, Status
 from repositories import AgentRepo
 from common import AgentError
 
-agentRepo = AgentRepo()
+agent_repo = AgentRepo()
 
 
 class AgentListResource(Resource):
     @basic_auth.required
     def get(self):
         try:
-            result = agentRepo.list()
+            result = agent_repo.list()
             if result != None:
                 res = CustomResponse(Status.SUCCESS.value, result)
                 return res.getres()
@@ -35,7 +33,7 @@ class AgentRunResource(Resource):
     def post(self):
         try:
             req_data = request.get_json()
-            result = agentRepo.run(req_data)
+            result = agent_repo.run(req_data)
             if result != None:
                 res = CustomResponse(Status.SUCCESS.value, result)
                 return res.getres()
@@ -49,4 +47,3 @@ class AgentRunResource(Resource):
                 s_code = 429
             res = CustomResponse(get_status(e_class).value, str(e))
             return res.getresjson(), s_code
-

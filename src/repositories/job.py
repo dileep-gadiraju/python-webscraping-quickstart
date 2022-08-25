@@ -3,7 +3,7 @@ from models import JobModel
 
 class JobRepo:
     def __init__(self):
-        self.jobModel = JobModel()
+        self.job_model = JobModel()
 
-    def status(self, jobId):
-        return self.jobModel.status(jobId)
+    def status(self, job_id):
+        return self.job_model.status(job_id)

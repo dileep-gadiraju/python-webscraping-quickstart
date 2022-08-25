@@ -13,15 +13,15 @@ AGENTS_PKL_PATH = os.path.join(
 
 class AgentRepo:
     def __init__(self):
-        self.agentUtils = AgentUtils()
-        self.agentUtils.filepath = AGENTS_PKL_PATH
-        self.agent_list = self.agentUtils.listAgents()
+        self.agent_utils = AgentUtils()
+        self.agent_utils.filepath = AGENTS_PKL_PATH
+        self.agent_list = self.agent_utils.list_agents()
         self.executor = ThreadPoolExecutor(max_workers=config.MAX_RUNNING_JOBS)
 
-    def get_agent_data(self, agentId):
+    def get_agent_data(self, agent_id):
         data = None
         for agent in self.agent_list:
-            if agent['agentId'] == agentId:
+            if agent['agentId'] == agent_id:
                 data = agent
                 break
         return data
@@ -39,12 +39,11 @@ class AgentRepo:
         if self.executor._work_queue.qsize() < config.MAX_WAITING_JOBS:
             agent_data = self.get_agent_data(req_data.get('agentId', None))
             if agent_data is not None:
-                agentContext = AgentContext(agent_data, req_data)
+                agentcontext = AgentContext(agent_data, req_data)
                 self.executor.submit(
-                    agent_data['scripts'][config.AGENT_SCRIPT_TYPES[agentContext.jobType]], agentContext)
-                output = {'jobId': agentContext.jobId}
-            else:
-                pass
+                    agent_data['scripts'][config.AGENT_SCRIPT_TYPES[agentcontext.job_type]], agentcontext)
+                output = {'jobId': agentcontext.job_id}
         else:
-            raise TooManyRequest('Already many jobs are in Waiting ... Please retry after some time.')
+            raise TooManyRequest(
+                'Already many jobs are in Waiting ... Please retry after some time.')
         return output

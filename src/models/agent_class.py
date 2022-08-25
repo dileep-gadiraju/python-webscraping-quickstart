@@ -1,19 +1,19 @@
 class Agent(object):
-    def __init__(self, agentData):
-        self.provider = agentData['provider']
-        self.description = agentData['description']
-        self.agentId = agentData['agentId']
-        self.URL = agentData['URL']
-        self.scripts = agentData['scripts']
-        self.proxy = agentData.get('proxy', None)
+    def __init__(self, agent_data):
+        self.provider = agent_data['provider']
+        self.description = agent_data['description']
+        self.agent_id = agent_data['agentId']
+        self.url = agent_data['URL']
+        self.scripts = agent_data['scripts']
+        self.proxy = agent_data.get('proxy', None)
 
     @property
-    def agentId(self):
-        return self._agentId
+    def agent_id(self):
+        return self._agent_id
 
-    @agentId.setter
-    def agentId(self, value):
-        self._agentId = value
+    @agent_id.setter
+    def agent_id(self, value):
+        self._agent_id = value
 
     @property
     def description(self):
@@ -40,12 +40,12 @@ class Agent(object):
         self._scripts = value
 
     @property
-    def URL(self):
-        return self._URL
+    def url(self):
+        return self._url
 
-    @URL.setter
-    def URL(self, value):
-        self._URL = value
+    @url.setter
+    def url(self, value):
+        self._url = value
 
     @property
     def proxy(self):
@@ -57,6 +57,6 @@ class Agent(object):
 
     def __str__(self):
         str_1 = 'id: {0} , description: {1} , provider: {2} , scripts: {3} , URL: {4} , Proxy: {5}'
-        str_1 = str_1.format(self.agentId, self.description,
-                             self.provider, self.scripts, self.URL, self.proxy)
+        str_1 = str_1.format(self.agent_id, self.description,
+                             self.provider, self.scripts, self.url, self.proxy)
         return str_1

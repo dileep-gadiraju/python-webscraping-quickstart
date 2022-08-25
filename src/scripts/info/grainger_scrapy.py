@@ -3,7 +3,6 @@ import crochet
 import scrapy
 from common import Log,get_scrapy_settings
 from scrapy.crawler import CrawlerRunner
-from twisted.internet import reactor
 
 crochet.setup()
 
@@ -17,8 +16,8 @@ false = 'false'
 
 # ---------------------SCRAPING-CLASS---------------------
 
-class GraingerScrapy(scrapy.Spider):
-    name = 'GraingerScrapy'
+class grainger_scrapy(scrapy.Spider):
+    name = 'grainger_scrapy'
     
 
     def __init__(self, search_param,eslog):
@@ -69,7 +68,6 @@ class GraingerScrapy(scrapy.Spider):
                     yield scrapy.Request(url=self.main_url+i['productDetailUrl'], callback=self.collect_data)
 
     def collect_data(self, response):
-        data = dict()
         main_content = response.css('.product-detail__content--large')
         spec = response.css('.specifications')
         data = {
@@ -97,13 +95,13 @@ class GraingerScrapy(scrapy.Spider):
 
 # ---------------------SCRAPING-FUNCTION---------------------
 
-def GraingerScrapy(agentContext):
-    log = Log(agentContext)
+def grainger_scrapy(agentcontext):
+    log = Log(agentcontext)
     log.job(config.JOB_RUNNING_STATUS, 'Job Started')
 
-    runner = CrawlerRunner(settings=get_scrapy_settings(agentContext.jobId))
+    runner = CrawlerRunner(settings=get_scrapy_settings(agentcontext.job_id))
     runner.crawl(
-        GraingerScrapy, search_param=agentContext.requestBody.get('search'), eslog=log)
+        grainger_scrapy, search_param=agentcontext.request_body.get('search'), eslog=log)
     runner.join()
     log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
             'Successfully scraped all data')

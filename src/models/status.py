@@ -64,7 +64,7 @@ class Status(enum.Enum):
     }
 
 
-def get_status(exceptionType):
+def get_status(exception_type):
     e_dict = {
         'AgentError': Status.ERR_INVALID_DATA,
         'ParamMissing': Status.ERR_MISSING_PARAMETERS,
@@ -72,8 +72,8 @@ def get_status(exceptionType):
         'ValueMissing': Status.ERR_INVALID_DATA,
         'TooManyRequest': Status.ERR_TOO_MANY_REQUEST
     }
-    if str(exceptionType) in e_dict.keys():
-        status = e_dict[str(exceptionType)]
+    if str(exception_type) in e_dict.keys():
+        status = e_dict[str(exception_type)]
     else:
         status = Status.FAILURE
     return status

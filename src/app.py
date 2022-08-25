@@ -30,10 +30,10 @@ __import__("scripts")
 my_scripts = sys.modules["scripts"]
 
 # serialize agent config
-agentUtils = AgentUtils()
-agentUtils.filepath = os.path.join(
+agent_utils = AgentUtils()
+agent_utils.filepath = os.path.join(
     config.SERVER_STATIC_PATH, config.AGENT_CONFIG_PKL_PATH)
-pkl_agent_list = agentUtils.listAgents()
+pkl_agent_list = agent_utils.list_agents()
 len_diff = len(agent_list) - len(pkl_agent_list)
 for i in range(len(agent_list)-1, len(agent_list)-len_diff-1, -1):
     agent = agent_list[i]
@@ -42,7 +42,7 @@ for i in range(len(agent_list)-1, len(agent_list)-len_diff-1, -1):
         agent_script[type] = my_scripts.__dict__[
             type].__dict__[agent['scripts'][type]]
     agent['scripts'] = agent_script
-    agentUtils.addAgent(agent)
+    agent_utils.add_agent(agent)
 
 
 # server CORS policy

@@ -1,15 +1,5 @@
-import os
-import time
-import traceback
 import config
 
-from common import Log, get_driver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-
-def NoScripts(agentContext):
-    log = Log(agentContext)
-
-    log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
-            'Script Not Available')
+def no_scripts(agentcontext):
+    agentcontext.log.job(config.JOB_COMPLETED_SUCCESS_STATUS,
+                         'Script Not Available')

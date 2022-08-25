@@ -17,7 +17,7 @@ class AgentUtils:
     def filepath(self, value):
         self._filepath = value
 
-    def __readPklFile(self):
+    def __readpklfile(self):
         if os.path.exists(self.filepath):
             file_pi = open(self.filepath, 'rb')
             agent_list = pickle.load(file_pi)
@@ -25,30 +25,30 @@ class AgentUtils:
         else:
             return []
 
-    def __writePklFile(self, agent_list):
+    def __writepklfile(self, agent_list):
         file_pi = open(self.filepath, 'wb')
         pickle.dump(agent_list, file_pi)
 
-    def addAgent(self, agentData):
-        agent = Agent(agentData)
-        agent_list = self.__readPklFile()
+    def add_agent(self, agent_data):
+        agent = Agent(agent_data)
+        agent_list = self.__readpklfile()
         for old_agent in agent_list:
-            if old_agent.agentId == agent.agentId:
+            if old_agent.agent_id == agent.agent_id:
                 print('The agent already exists', agent)
                 return
         agent_list.append(agent)
-        self.__writePklFile(agent_list)
+        self.__writepklfile(agent_list)
 
-    def listAgents(self):
+    def list_agents(self):
         return_list = []
-        agent_list = self.__readPklFile()
+        agent_list = self.__readpklfile()
         for old_agent in agent_list:
             agent = {}
-            agent['agentId'] = old_agent.agentId
+            agent['agentId'] = old_agent.agent_id
             agent['description'] = old_agent.description
             agent['provider'] = old_agent.provider
             agent['scripts'] = old_agent.scripts
-            agent['URL'] = old_agent.URL
+            agent['URL'] = old_agent.url
             agent['proxy'] = old_agent.proxy
             return_list.append(agent)
         return return_list

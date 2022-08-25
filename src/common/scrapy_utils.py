@@ -5,11 +5,11 @@ from scrapy.utils.project import get_project_settings
 
 
 # getting settings for scrapy crawlers
-def get_scrapy_settings(jobid):
+def get_scrapy_settings(job_id):
     settings = {
         **get_project_settings(),
         'ITEM_PIPELINES': {'common.scrapy_utils.CustomFilesPipeline': 1},
-        'FILES_STORE': str(JOB_OUTPUT_PATH + '/{0}/'.format(jobid)),
+        'FILES_STORE': str(JOB_OUTPUT_PATH + '/{0}/'.format(job_id)),
         'USER_AGENT': "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
     }
     return settings

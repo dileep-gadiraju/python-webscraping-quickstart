@@ -5,7 +5,7 @@ import traceback
 
 
 import config
-from common import Log, get_driver
+from common import get_driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -21,7 +21,7 @@ def single_product(log, driver, download_dir, new_output_dir, win_handle=2):
             product_name = str(driver.current_url).split('-')[-1].strip()
             try:
                 product_name = product_name.split('-')[-1].split('?')[:1][0]
-            except:
+            except Exception:
                 pass
             driver.switch_to.new_window()
             driver.get(download_link)
@@ -40,7 +40,7 @@ def single_product(log, driver, download_dir, new_output_dir, win_handle=2):
             time.sleep(2)
             driver.close()
             driver.switch_to.window(driver.window_handles[win_handle])
-    except Exception as e:
+    except Exception:
         log.info('exception', traceback.format_exc())
 
 
@@ -66,7 +66,7 @@ def multi_product(log, wait, driver, download_dir, new_output_dir):
             driver.find_element_by_xpath(
                 '//div[@id="feedbackBrowseModal"]//div[@class="modal-footer"]//a[@class = "close"]').click()
             time.sleep(2)
-        except:
+        except Exception:
             pass
 
         for a_tag in driver.find_elements(By.XPATH, "//tbody//a"):
@@ -84,10 +84,10 @@ def multi_product(log, wait, driver, download_dir, new_output_dir):
         time.sleep(5)
 
 
-def GraingerSelenium(agentContext):
-    log = agentContext.log
+def grainger_selenium(agentcontext):
+    log = agentcontext.log
     try:
-        download_dir_id = str(agentContext.jobId)
+        download_dir_id = str(agentcontext.job_id)
         download_dir = os.path.join(
             os.getcwd(), 'temp', 'temp-' + download_dir_id)
 
@@ -95,16 +95,16 @@ def GraingerSelenium(agentContext):
         try:
             os.mkdir(os.path.normpath(os.getcwd() +
                                       os.sep + os.pardir) + '\\output')
-        except:
+        except Exception:
             pass
         output_dir = os.path.normpath(
             os.getcwd() + os.sep + os.pardir) + '\\output\\'
         os.mkdir(output_dir + download_dir_id)
         new_output_dir = os.path.join(output_dir, download_dir_id)
 
-        driver = get_driver(download_dir, agentContext)
+        driver = get_driver(download_dir, agentcontext)
         driver.maximize_window()
-        driver.get(agentContext.URL)
+        driver.get(agentcontext.url)
 
         wait = WebDriverWait(driver, 20)
 
@@ -112,7 +112,7 @@ def GraingerSelenium(agentContext):
 
         # Inputing Search-Param
         driver.find_element_by_xpath(
-            '//input[@aria-label="Search Query"]').send_keys(agentContext.requestBody['search'])
+            '//input[@aria-label="Search Query"]').send_keys(agentcontext.request_body['search'])
         time.sleep(2)
         driver.find_element_by_xpath(
             '//button[@aria-label="Submit Search Query"]').click()

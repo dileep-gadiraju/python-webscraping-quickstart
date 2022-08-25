@@ -17,7 +17,7 @@ class RSSpider(scrapy.Spider):
         for i in range(0,100,3):
             try:
                 data[meta_data[i]] = meta_data[i+2]
-            except:
+            except Exception:
                 break
         data['title'] = str(response.css('h1.title::text').get()).strip()
         data['url'] = response.url
